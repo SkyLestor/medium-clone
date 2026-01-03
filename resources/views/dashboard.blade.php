@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="py-4">
-        <div class="max-w-7xl mx-auto sm:px-4 lg:px-8">
+        <div class="max-w-5xl mx-auto sm:px-4 lg:px-8">
             <div class="bg-gray-200 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mt-4">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <ul class="flex -mb-px space-x-8 justify-center">
@@ -53,6 +53,10 @@
                             </a>
                         </div>
                     @endforeach
+
+                </div>
+                <div class="max-w-3xl -mt-4 mb-3 mr-auto ml-auto">
+                    {{ $posts->onEachSide(1)->links() }}
                 </div>
             </div>
         </div>
