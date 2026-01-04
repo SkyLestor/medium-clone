@@ -23,7 +23,7 @@
             </div>
             <div class="mt-8 text-gray-900 dark:text-gray-100">
                 <div class="p-4">
-                    @foreach($posts as $post)
+                    @forelse($posts as $post)
                         <div
                             class="flex bg-gray-200 dark:bg-gray-800 rounded-lg mb-8">
                             <div class="p-5 flex-1">
@@ -52,11 +52,15 @@
                                      alt=""/>
                             </a>
                         </div>
-                    @endforeach
+                    @empty
+                        <div class="py-16 text-center">
+                            No posts were found
+                        </div>
+                    @endforelse
 
                 </div>
                 <div class="max-w-3xl -mt-4 mb-3 mr-auto ml-auto">
-                    {{ $posts->onEachSide(1)->links() }}
+                    {{ $posts->links() }}
                 </div>
             </div>
         </div>
