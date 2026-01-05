@@ -18,4 +18,16 @@ class Post extends Model
         'user_id',
         'published_at',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function readTime($wordsPerMinute = 100)
+    {
+        $wordCount = str_word_count(strip_tags($this->content));
+        return ceil($wordCount / $wordsPerMinute);
+    }
+
 }
