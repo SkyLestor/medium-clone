@@ -11,7 +11,8 @@
                             class="mt-2 cursor-pointer bg-neutral-secondary-medium border text-heading
                             text-lg rounded-md focus:ring-brand focus:border-brand block border-1 shadow-xs placeholder:text-body
                             border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500
-                            dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 w-full"
+                            dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 w-full
+                             file:bg-gray-300 dark:file:bg-gray-100 file:rounded-l-md file:border-0"
                             id="image" type="file" name="image">
                         <x-input-error :messages="$errors->get('image')" class="mt-2"/>
                     </div>

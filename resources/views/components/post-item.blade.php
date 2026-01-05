@@ -22,7 +22,7 @@
         </a>
     </div>
     <a href="#">
-        <img class="w-48 h-full object-cover rounded-r-lg"
+        <img class="w-48 h-full max-h-56 object-cover rounded-r-lg"
              src="{{ $post->image }}"
              alt=""/>
     </a>
