@@ -26,7 +26,7 @@
     </div>
     <a href="#">
         <img class="w-48 h-full max-h-56 object-cover rounded-r-lg"
-             src="{{ $post->imageUrl }}"
+             src="{{ $post->imageUrl() }}"
              alt=""/>
     </a>
 </div>

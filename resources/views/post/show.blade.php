@@ -4,14 +4,14 @@
             <div
                 class="bg-gray-200 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg text-gray-900 dark:text-gray-100 mt-4 p-8">
                 <h1 class=" text-4xl mb-4">{{ $post->title }}</h1>
+                <!-- User Avatar -->
                 <div class="flex gap-4">
                     @if($post->user->image)
-                        <img class="w-14 h-14 rounded-full" src="{{ $post->user->imageUrl }}"
+                        <img class="w-14 h-14 rounded-full" src="{{ $post->user->imageUrl() }}"
                              alt="{{ $post->user->name }}">
                     @else
                         <img src="/dummy_avatar.png" class="w-14 h-14 rounded-full" alt="Dummy avatar">
                     @endif
-
                     <div class="mt-2">
                         <div class="flex gap-2">
                             <h3>
@@ -28,8 +28,24 @@
                             {{ $post->created_at->format('M d, Y') }}
                         </div>
                     </div>
-
                 </div>
+                <!-- User Avatar -->
+
+                <!-- Clap Section -->
+                <div class="mt-8 border-b border-t border-gray-200 dark:border-gray-300 text-lg">
+                    TODO: Clap Section
+                </div>
+                <!-- Clap Section -->
+
+                <!-- Content Section -->
+                <div class="mt-8">
+                    <img src="{{ $post->imageUrl() }}" alt="{{ $post->title }}" class="w-full">
+                    <div class="mt-4">
+                        {{ $post->content }}
+                    </div>
+                </div>
+                <!-- Content Section -->
+
             </div>
         </div>
     </div>

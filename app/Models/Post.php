@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Post extends Model
 {
@@ -28,6 +29,14 @@ class Post extends Model
     {
         $wordCount = str_word_count(strip_tags($this->content));
         return ceil($wordCount / $wordsPerMinute);
+    }
+
+    public function imageUrl(): ?string
+    {
+        if ($this->image) {
+            return Storage::url($this->image);
+        }
+        return null;
     }
 
 }
