@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="py-4">
         <div class="max-w-5xl mx-auto sm:px-4 lg:px-8">
-            <div class="bg-gray-200 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mt-4 p-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mt-4 p-8">
                 <form action="{{ route('post.store')  }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <!-- Image -->

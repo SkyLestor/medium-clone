@@ -2,7 +2,7 @@
     <div class="py-4">
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
             <div
-                class="bg-gray-200 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg text-gray-900 dark:text-gray-100 mt-4 p-8">
+                class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg text-gray-900 dark:text-gray-100 mt-4 p-8">
                 <h1 class=" text-4xl mb-4">{{ $post->title }}</h1>
                 <!-- User Avatar -->
                 <div class="flex gap-4">
@@ -53,7 +53,7 @@
                     </div>
 
                     <div class="mt-8">
-                        <span class="px-4 py-2 bg-gray-300 dark:bg-gray-300 rounded-full">
+                        <span class="px-4 py-2 bg-gray-300 dark:bg-gray-600 rounded-full">
                             {{ $post->category->name }}
                         </span>
                     </div>

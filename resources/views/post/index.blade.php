@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="py-4">
         <div class="max-w-5xl mx-auto sm:px-4 lg:px-8">
-            <div class="bg-gray-200 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mt-4">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mt-4">
                 <x-category-tabs></x-category-tabs>
             </div>
             <div class="mt-8 text-gray-900 dark:text-gray-100">
