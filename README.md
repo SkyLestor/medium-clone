@@ -1,59 +1,121 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Medium Clone
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A full-stack, Medium-like blogging platform built with Laravel, Vite, and Tailwind CSS. This project replicates core
+features of Medium, providing a clean and modern interface for reading and writing articles.
 
-## About Laravel
+## About The Project
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This repository contains a web application inspired by the popular blogging platform, Medium. It is built using the
+Laravel framework for the backend and styled with Tailwind CSS for the frontend, with assets compiled by Vite. The
+primary goal is to demonstrate a robust, full-stack application with essential blogging functionalities.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Built With
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* **Backend:** PHP, Laravel 12
+* **Frontend:** Vite, Tailwind CSS, Alpine.js
+* **Authentication:** Laravel Breeze
+* **Database:** SQLite (default), MySQL, PostgreSQL
 
-## Learning Laravel
+## Key Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+* **User Authentication:** Secure user registration, login, email verification, and password reset functionality.
+* **Profile Management:** Users can update their profile information, including name, username, bio, and avatar/profile
+  picture.
+* **Post Management (CRUD):**
+    * Create, read, and publish articles.
+    * A rich text editor for writing content.
+    * Ability to upload a feature image for each post.
+* **Categorization:** Assign categories to posts for better organization and discovery.
+* **Dynamic Feed:** A main dashboard that displays a paginated feed of all published posts.
+* **SEO-Friendly URLs:** Clean, Medium-style URLs for user profiles and posts (e.g., `/@username/post-slug`).
+* **Read Time Calculation:** Automatically calculates and displays the estimated reading time for each article.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Getting Started
 
-## Laravel Sponsors
+Follow these instructions to get a copy of the project up and running on your local machine for development and testing
+purposes.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Prerequisites
 
-### Premium Partners
+Make sure you have the following installed on your system:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+* PHP 8.2+
+* Composer
+* Node.js & NPM
 
-## Contributing
+### Installation
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/SkyLestor/medium-clone.git
+   ```
 
-## Code of Conduct
+2. **Navigate to the project directory:**
+   ```sh
+   cd medium-clone
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+3. **Install PHP dependencies:**
+   ```sh
+   composer install
+   ```
 
-## Security Vulnerabilities
+4. **Create your environment file:**
+   ```sh
+   cp .env.example .env
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+5. **Generate an application key:**
+   ```sh
+   php artisan key:generate
+   ```
 
-## License
+6. **Configure your `.env` file:**
+   Set up your database connection. By default, the application is configured to use SQLite. To use it, simply create
+   the database file:
+   ```sh
+   touch database/database.sqlite
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+7. **Run database migrations and seed the database:**
+   This will create the necessary tables and populate the database with initial categories and a test user.
+   ```sh
+   php artisan migrate --seed
+   ```
+
+8. **Install JavaScript dependencies:**
+   ```sh
+   npm install
+   ```
+
+9. **Build frontend assets:**
+   ```sh
+   npm run build
+   ```
+
+10. **Link the storage directory:**
+    This makes uploaded files (like avatars and post images) publicly accessible.
+    ```sh
+    php artisan storage:link
+    ```
+
+## Usage
+
+To start the local development server, along with the Vite server for hot-reloading and the queue listener, you can use
+the `dev` script from `composer.json`.
+
+```sh
+composer run dev
+```
+
+This will concurrently run:
+
+* The Laravel development server (default: `http://127.0.0.1:8000`)
+* The Vite development server for frontend assets.
+* The Laravel queue listener.
+
+You can now access the application in your browser. A default user is created by the seeder with the following
+credentials:
+
+* **Email:** `test@example.com`
+* **Password:** `password`
