@@ -2,7 +2,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="flex">
+                <fol class="flex">
                     <div class="flex-1">
                         <div>
                             <h1 class="text-5xl dark:text-white">
@@ -20,21 +20,7 @@
                         </div>
                     </div>
 
-                    <div class="w-[320px] border-l px-8" x-data="{
-                        following: {{ $user->isFollowedBy(Auth::user()) ? 'true' : 'false'}},
-                        followersCount: {{ $user->followers()->count() }},
-                        follow() {
-                            this.following = !this.following
-                            axios.post('/follow/{{ $user->id }}')
-                                .then(res => {
-                                    console.log(res.data)
-                                    this.followersCount = res.data.followers
-                                })
-                                .catch(err => {
-                                    console.log(err)
-                                })
-                        }
-                    }">
+                    <x-follow-ctr :user="$user">
                         <x-user-avatar :user="$user" size="w-24 h-24"/>
                         <h3 class="dark:text-gray-300">
                             {{ $user->name }}
@@ -53,9 +39,9 @@
                                 </button>
                             </div>
                         @endif
-                    </div>
-                </div>
+                    </x-follow-ctr>
             </div>
         </div>
+    </div>
     </div>
 </x-app-layout>
