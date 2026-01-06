@@ -26,16 +26,18 @@
                             {{ $user->name }}
                         </h3>
                         <p class="text-gray-500">
-                            26K followers
+                            {{ $user->followers()->count() }} followers
                         </p>
                         <p>
                             {{ $user->bio }}
                         </p>
-                        <div class="mt-4">
-                            <button class="bg-emerald-600 rounded-full px-4 py-2">
-                                Follow
-                            </button>
-                        </div>
+                        @if (auth()->user() && auth()->user()->id !== $user->id)
+                            <div class="mt-4">
+                                <button class="bg-emerald-600 rounded-full px-4 py-2">
+                                    Follow
+                                </button>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
