@@ -6,22 +6,19 @@
                 <h1 class=" text-4xl mb-4">{{ $post->title }}</h1>
                 <!-- User Avatar -->
                 <div class="flex gap-4">
-                    @if($post->user->image)
-                        <img class="w-14 h-14 rounded-full" src="{{ $post->user->imageUrl() }}"
-                             alt="{{ $post->user->name }}">
-                    @else
-                        <img src="/dummy_avatar.png" class="w-14 h-14 rounded-full" alt="Dummy avatar">
-                    @endif
+                    <x-user-avatar :user="$post->user"/>
                     <div class="mt-2">
-                        <div class="flex gap-2">
-                            <h3>
+                        <x-follow-ctr :user="$post->user" class="flex gap-2 border-0">
+                            <a href="{{ route('profile.show', $post->user) }}" class="hover:underline">
                                 {{ $post->user->name }}
-                            </h3>
-                            &middot;
-                            <a href="#" class="text-emerald-600 dark:text-emerald-300">
-                                Follow
                             </a>
-                        </div>
+                            &middot;
+
+                            <button @click="follow()" class="cursor-pointer hover:underline"
+                                    x-text="following ? 'Unfollow' : 'Follow'"
+                                    :class="following ? 'text-red-600 dark:text-red-400' : 'text-emerald-600 dark:text-emerald-300'">
+                            </button>
+                        </x-follow-ctr>
                         <div class="flex gap-2 text-gray-400 dark:text-gray-500 text-sm">
                             {{ $post->readTime() }} min read
                             &middot;

@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -39,6 +40,21 @@ class User extends Authenticatable implements MustVerifyEmail
         'remember_token',
     ];
 
+    public function posts(): User|HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function following(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
+    }
+
+    public function followers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+    }
+
     /**
      * Get the attributes that should be cast.
      *
@@ -58,6 +74,11 @@ class User extends Authenticatable implements MustVerifyEmail
             return Storage::url($this->image);
         }
         return null;
+    }
+
+    public function isFollowedBy(User $user): bool
+    {
+        return $this->followers()->where('follower_id', $user->id)->exists();
     }
 
 }
