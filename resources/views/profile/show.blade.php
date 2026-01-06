@@ -13,7 +13,7 @@
                             @forelse($posts as $post)
                                 <x-post-item :post="$post"></x-post-item>
                             @empty
-                                <div class="py-16 text-center">
+                                <div class="py-16 text-center dark:text-gray-300">
                                     No posts were found
                                 </div>
                             @endforelse
