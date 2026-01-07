@@ -8,6 +8,8 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
 class PostController extends Controller
 {
@@ -22,7 +24,7 @@ class PostController extends Controller
 
         if ($user) {
             $ids = $user->following()->pluck('users.id')->add($user->id);
-            $query->whereIn('id', $ids);
+            $query->whereIn('user_id', $ids);
         }
 
         $posts = $query->simplePaginate(5);
@@ -44,15 +46,12 @@ class PostController extends Controller
     public function store(PostCreateRequest $request)
     {
         $data = $request->validated();
-        $image = $data['image'];
 
         $data['user_id'] = Auth::id();
         $data['slug'] = Str::slug($data['title']);
 
-        $imagePath = $image->store('posts', 'public');
-        $data['image'] = $imagePath;
-
-        Post::create($data);
+        $post = Post::create($data);
+        $post->addMediaFromRequest('image')->toMediaCollection();
 
         return redirect()->route('dashboard');
     }
