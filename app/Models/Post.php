@@ -52,9 +52,9 @@ class Post extends Model implements HasMedia
         return ceil($wordCount / $wordsPerMinute);
     }
 
-    public function imageUrl(): ?string
+    public function imageUrl(string $conversionName = ''): ?string
     {
-        return $this->getFirstMedia()->getUrl('preview');
+        return $this->getFirstMedia()->getUrl($conversionName);
     }
 
 }
