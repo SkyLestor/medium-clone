@@ -6,7 +6,11 @@
                 ? 'inline-block py-4 px-1 border-b-2 border-indigo-500 text-indigo-600 dark:text-indigo-400 font-medium text-sm'
                 : 'inline-block py-4 px-1 border-b-2 border-transparent text-gray-500 dark:text-gray-400
                 hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300 transition-all duration-200' }}">
-                All
+                @if(auth()->user())
+                    Follows
+                @else
+                    All
+                @endif
             </a>
         </li>
         @foreach($categories as $category)
