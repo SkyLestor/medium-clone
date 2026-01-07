@@ -12,12 +12,13 @@
                             <a href="{{ route('profile.show', $post->user) }}" class="hover:underline">
                                 {{ $post->user->name }}
                             </a>
-                            &middot;
-
+                            @if (auth()->user() && auth()->user()->id !== $post->user->id)
+                                &middot;
                             <button @click="follow()" class="cursor-pointer hover:underline"
                                     x-text="following ? 'Unfollow' : 'Follow'"
                                     :class="following ? 'text-red-600 dark:text-red-400' : 'text-emerald-600 dark:text-emerald-300'">
                             </button>
+                            @endif
                         </x-follow-ctr>
                         <div class="flex gap-2 text-gray-400 dark:text-gray-500 text-sm">
                             {{ $post->readTime() }} min read
@@ -28,7 +29,7 @@
                 </div>
                 <!-- User Avatar -->
 
-                <x-likes-display/>
+                <x-likes-display :post="$post"/>
 
                 <!-- Content Section -->
                 <div class="mt-8">
@@ -46,7 +47,7 @@
                 </div>
                 <!-- Content Section -->
 
-                <x-likes-display/>
+                <x-likes-display :post="$post"/>
 
             </div>
         </div>
