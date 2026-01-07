@@ -24,11 +24,11 @@ class Post extends Model implements HasMedia
     ];
 
     public function registerMediaConversions(Media|null $media = null): void
-
     {
         $this
             ->addMediaConversion('preview')
-            ->width(400);
+            ->width(400)
+            ->nonQueued();
     }
 
     public function user()
@@ -54,7 +54,7 @@ class Post extends Model implements HasMedia
 
     public function imageUrl(string $conversionName = ''): ?string
     {
-        return $this->getFirstMedia()->getUrl($conversionName);
+        return $this->getFirstMedia()?->getUrl($conversionName);
     }
 
 }
