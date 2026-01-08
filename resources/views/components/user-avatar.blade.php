@@ -1,6 +1,6 @@
 @props(['user', 'size' => 'w-14 h-14'])
 
-@if($user->getFirstMedia())
+@if($user->imageUrl())
     <img class="{{ $size }} rounded-full" src="{{ $user->imageUrl() }}"
          alt="{{ $user->name }}">
 @else
