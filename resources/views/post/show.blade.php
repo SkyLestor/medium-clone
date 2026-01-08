@@ -30,7 +30,7 @@
                 <!-- User Avatar -->
                 @if($post->user_id === Auth::id())
                     <div class="mt-4">
-                        <x-primary-button>
+                        <x-primary-button href="{{ route('post.edit', $post->slug) }}">
                             Edit Post
                         </x-primary-button>
 

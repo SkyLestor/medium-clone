@@ -1,10 +1,20 @@
 <x-app-layout>
     <div class="py-4">
         <div class="max-w-5xl mx-auto sm:px-4 lg:px-8">
-            <h1 class="text-3xl mb-4 dark:text-gray-200">Create new post</h1>
+            <h1 class="text-3xl mb-4 dark:text-gray-200">
+                Edit post: <strong class="font-bold">{{ $post->title }}</strong>
+            </h1>
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mt-4 p-8">
-                <form action="{{ route('post.store')  }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('post.update', $post)  }}" method="post" enctype="multipart/form-data">
                     @csrf
+                    @method('PATCH')
+
+                    @if($post->imageUrl())
+                        <div class="mb-8">
+                            <img src="{{ $post->imageUrl() }}" alt="{{ $post->title }}" class="w-full">
+                        </div>
+                    @endif
+
                     <!-- Image -->
                     <div>
                         <x-input-label for="image" :value="__('Image')"/>
@@ -22,7 +32,7 @@
                     <div class="mt-4">
                         <x-input-label for="title" :value="__('Title')"/>
                         <x-text-input id="title" class="block mt-1 w-full" type="text" name="title"
-                                      :value="old('title')" autofocus/>
+                                      :value="old('title', $post->title)" autofocus/>
                         <x-input-error :messages="$errors->get('title')" class="mt-2"/>
                     </div>
 
@@ -34,7 +44,8 @@
                                 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm block mt-1 w-full">
                             <option value="">Select category id</option>
                             @foreach($categories as $category)
-                                <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>
+                                <option
+                                    value="{{ $category->id }}" @selected(old('category_id', $post->category_id) == $category->id)>
                                     {{ $category->name }}
                                 </option>
                             @endforeach
@@ -46,7 +57,7 @@
                     <div class="mt-4">
                         <x-input-label for="content" :value="__('Content')"/>
                         <x-input-textarea -input id="content" class="block mt-1 w-full" name="content"
-                        >{{ old('content') }}</x-input-textarea>
+                        >{{ old('content', $post->content) }}</x-input-textarea>
                         <x-input-error :messages="$errors->get('content')" class="mt-2"/>
                     </div>
 
