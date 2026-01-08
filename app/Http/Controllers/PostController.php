@@ -22,6 +22,7 @@ class PostController extends Controller
         $user = auth()->user();
 
         $query = Post::with(['user', 'media'])
+            ->where('published_at', '<=', now())
             ->withCount('likes')
             ->latest();
 
@@ -115,6 +116,7 @@ class PostController extends Controller
     public function category(Category $category)
     {
         $posts = $category->posts()
+            ->where('published_at', '<=', now())
             ->with(['user', 'media'])
             ->withCount('likes')
             ->latest()->simplePaginate(5);

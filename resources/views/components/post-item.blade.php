@@ -21,7 +21,7 @@
                     {{ $post->user->name }}
                 </a>
                 at
-                {{ $post->getCreatedAtFormatted() }}
+                {{ $post->getPublishedAtFormatted() }}
             </div>
             <span class="flex gap-1 items-center">
                 <x-like-icon-hollow/>
