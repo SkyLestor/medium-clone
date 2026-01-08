@@ -50,7 +50,6 @@ class PostController extends Controller
         $data = $request->validated();
 
         $data['user_id'] = Auth::id();
-        $data['slug'] = Str::slug($data['title']);
 
         $post = Post::create($data);
         $post->addMediaFromRequest('image')->toMediaCollection();
