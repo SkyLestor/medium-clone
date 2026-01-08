@@ -16,8 +16,13 @@
         <a href="{{ route('post.show', [
                 'username' => $post->user->username,
                 'post' => $post->slug
-                ]) }}">
+                ]) }}"
+           class="text-sm text-gray-400 dark:text-gray-500 flex gap-4 items-center">
             {{ $post->getCreatedAtFormatted() }}
+            <span class="flex gap-1 items-center">
+                <x-like-icon-hollow/>
+                {{ $post->likes()->count() }}
+            </span>
         </a>
     </div>
     <a href="{{ route('post.show', [
