@@ -16,7 +16,7 @@
             });
         }
     }"
-        class="mt-8 p-4 border-b border-t border-gray-400 dark:border-gray-500 text-lg">
+        class="mt-4 p-4 border-b border-t border-gray-400 dark:border-gray-500 text-lg">
         <button
             @click="like()"
             class="flex gap-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200">
