@@ -31,8 +31,9 @@ class ProfileController extends Controller
         $user = $request->user();
 
         $user->fill($data);
-
-        $user->addMediaFromRequest('image')->toMediaCollection('avatar');
+        if ($data['image'] ?? false) {
+            $user->addMediaFromRequest('image')->toMediaCollection('avatar');
+        }
 
         if ($user->isDirty('email')) {
             $user->email_verified_at = null;
