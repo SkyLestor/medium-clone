@@ -21,7 +21,7 @@
             {{ $post->getCreatedAtFormatted() }}
             <span class="flex gap-1 items-center">
                 <x-like-icon-hollow/>
-                {{ $post->likes()->count() }}
+                {{ $post->likes_count }}
             </span>
         </a>
     </div>
