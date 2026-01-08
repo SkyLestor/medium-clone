@@ -25,7 +25,9 @@ class Post extends Model implements HasMedia
         'user_id',
         'published_at',
     ];
-
+    protected $casts = [
+        'published_at' => 'datetime',
+    ];
 
     /**
      * Get the options for generating the slug.
@@ -71,9 +73,9 @@ class Post extends Model implements HasMedia
         return $this->getFirstMedia()?->getUrl($conversionName);
     }
 
-    public function getCreatedAtFormatted(): string
+    public function getPublishedAtFormatted(): string
     {
-        return $this->created_at->format('M d, Y');
+        return $this->published_at->format('M d, Y');
     }
 
 }
