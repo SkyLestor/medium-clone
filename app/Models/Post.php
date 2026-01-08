@@ -57,4 +57,9 @@ class Post extends Model implements HasMedia
         return $this->getFirstMedia()?->getUrl($conversionName);
     }
 
+    public function getCreatedAtFormatted(): string
+    {
+        return $this->created_at->format('M d, Y');
+    }
+
 }
