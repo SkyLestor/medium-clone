@@ -25,7 +25,7 @@ class PostController extends Controller
             ->latest();
 
         if ($user) {
-            $ids = $user->following()->pluck('users.id')->add($user->id);
+            $ids = $user->following()->pluck('users.id');
             $query->whereIn('user_id', $ids);
         }
 
@@ -96,7 +96,18 @@ class PostController extends Controller
             ->with(['user', 'media'])
             ->withCount('likes')
             ->latest()->simplePaginate(5);
-        return view('post.index', compact('posts'));
 
+        return view('post.index', compact('posts'));
+    }
+
+    public function myPosts()
+    {
+        $user = auth()->user();
+        $posts = $user->posts()
+            ->with(['user', 'media'])
+            ->withCount('likes')
+            ->latest()->simplePaginate(5);
+
+        return view('post.index', compact('posts'));
     }
 }
