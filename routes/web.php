@@ -23,8 +23,6 @@ Route::get('/@{username}/{post:slug}', [PostController::class, 'show'])
     ->name('post.show');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-
-
     Route::get('/post/create', [PostController::class, 'create'])
         ->name('post.create');
 
@@ -43,19 +41,22 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/my-posts', [PostController::class, 'myPosts'])
         ->name('myPosts');
 
-
-    Route::post('follow/{user}', [FollowerController::class, 'followUnfollow'])
-        ->name('follow');
-
     Route::post('like/{post}', [LikeController::class, 'like'])
         ->name('like');
-
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [ProfileController::class, 'edit'])
+        ->name('profile.edit');
+
+    Route::patch('/profile', [ProfileController::class, 'update'])
+        ->name('profile.update');
+
+    Route::delete('/profile', [ProfileController::class, 'destroy'])
+        ->name('profile.destroy');
+
+    Route::post('follow/{user}', [FollowerController::class, 'followUnfollow'])
+        ->name('follow');
 });
 
 require __DIR__ . '/auth.php';
