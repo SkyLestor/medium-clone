@@ -20,7 +20,9 @@ class PostController extends Controller
     {
         $user = auth()->user();
 
-        $query = Post::latest();
+        $query = Post::with(['user', 'media'])
+            ->withCount('likes')
+            ->latest();
 
         if ($user) {
             $ids = $user->following()->pluck('users.id')->add($user->id);
@@ -90,7 +92,10 @@ class PostController extends Controller
 
     public function category(Category $category)
     {
-        $posts = $category->posts()->latest()->simplePaginate(5);
+        $posts = $category->posts()
+            ->with(['user', 'media'])
+            ->withCount('likes')
+            ->latest()->simplePaginate(5);
         return view('post.index', compact('posts'));
 
     }
