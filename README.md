@@ -119,3 +119,9 @@ credentials:
 
 * **Email:** `test@example.com`
 * **Password:** `password`
+
+You can also find another user, created by the seeder. This one is an author of all posts seeded into the database.
+Credentials are following:
+
+* **Email:** `creator@example.com`
+* **Password:** `password`
